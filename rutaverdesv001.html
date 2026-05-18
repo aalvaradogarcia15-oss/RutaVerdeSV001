@@ -207,11 +207,9 @@
                 }
             }
             
-            // Filtro por departamento - AQUÍ ESTÁ EL ERROR CRÍTICO 1
-            // Usamos .includes en lugar de comparación exacta (mal)
+           
             let cumpleDepto = true;
-            if (deptoSeleccionado !== "") {
-                // ERROR: esto hace que si eliges "San Salvador", también salgan lugares de "Santa Ana" porque "San" está incluido
+            if (deptoSeleccionado !== "")
                 if (lugar.departamento.includes(deptoSeleccionado) === false) {
                     cumpleDepto = false;
                 }
@@ -247,18 +245,14 @@
         contenedor.innerHTML = html;
     }
     
-    // ========== FALLO CRÍTICO 2: Publicar reseñas sin login y sin validación ==========
+    
     function publicarResena() {
         let nombre = document.getElementById("nombreUsuario").value;
         let comentario = document.getElementById("comentario").value;
         
-        // Aquí no estamos validando que nombre no esté vacío, ni que el comentario tenga contenido
-        // Tampoco hay sistema de login, cualquier persona puede publicar lo que sea
-        
         let lista = document.getElementById("listaResenas");
         let nuevoParrafo = document.createElement("p");
         
-        // Si el nombre está vacío, ponemos "Anónimo", pero igual se publica sin control
         let nombreFinal = nombre;
         if (nombreFinal === "") {
             nombreFinal = "Anónimo";
